@@ -1,25 +1,45 @@
-import "./App.scss";
-import Login from "./component/Login/Login";
-import Nav from "./component/Navigation/Nav";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Register from "./component/Register/Register";
+import './App.scss';
+// import Login from './component/Login/Login';
+// import Register from './component/Register/Register';
+// import Users from './component/ManageUsers/Users';
+import Nav from './component/Navigation/Nav';
+import { BrowserRouter as Router} from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import { useEffect, useState } from 'react';
+// import _ from 'lodash';
+import AppRoutes from './routes/AppRoutes';
 function App() {
-  return (
-    <Router>
-      <div className="app-container">
-        {/* <Nav /> */}
-        <Switch>
-          <Route path="/news">news</Route>
-          <Route path="/about">about</Route>
-          <Route path="/contact">contact</Route>
-          <Route path="/login"><Login/></Route>
-          <Route path="/register"><Register/></Route>
-          <Route path="/" exact>home</Route>
-          <Route path= "*">404 NOT FOUND</Route>
-        </Switch>
-      </div>
-    </Router>
-  );
+    const [account, setAccount] = useState({});
+    useEffect(() => {
+        let session = sessionStorage.getItem('account');
+        if (session) {
+            setAccount(JSON.parse(session));
+        }
+    }, []);
+    return (
+        <Router>
+            <div className="app-header">
+                <Nav />
+            </div>
+            <div className="app-container">
+                <AppRoutes/>
+            </div>
+            <ToastContainer
+                position="top-left"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                // transition: Bounce,
+            />
+            {/* Same as */}
+        </Router>
+    );
 }
 
 export default App;

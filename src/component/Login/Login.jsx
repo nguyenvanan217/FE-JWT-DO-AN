@@ -1,10 +1,68 @@
+import { useEffect, useState } from 'react';
 import './Login.scss';
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { loginUser } from '../../services/userService';
 const Login = (props) => {
     let history = useHistory();
+    const [valueLogin, setValueLogin] = useState('');
+    const [password, setPassword] = useState('');
+
+    const defaultObjValidInput = {
+        isValidValueLogin: true,
+        isValidPassword: true,
+    };
+    const [objValidInput, setObjValidInput] = useState(defaultObjValidInput);
+
     const handleCreateNewAccount = () => {
         history.push('/register');
     };
+    const handleLogin = async () => {
+        setObjValidInput(defaultObjValidInput);
+        if (!valueLogin) {
+            setObjValidInput({ ...defaultObjValidInput, isValidValueLogin: false });
+            toast.error('Please enter your address email or phone number');
+            return;
+        }
+        if (!password) {
+            setObjValidInput({ ...defaultObjValidInput, isValidPassword: false });
+            toast.error('Please enter your password');
+            return;
+        }
+        let response = await loginUser(valueLogin, password);
+        if (response && response.data && +response.data.EC === 0) {
+            //success
+            let data = {
+                isAuthenticated: true,
+                token: 'fake token',
+            };
+            sessionStorage.setItem('account', JSON.stringify(data));
+            history.push('/users');
+            window.location.reload();
+        }
+        if (response && response.data && +response.data.EC !== 0) {
+            //error
+            toast.error(response.data.EM);
+        }
+    };
+    const handlePressEnter = (event) => {
+        if (event.keyCode === 13 && event.code === 'Enter') {
+            handleLogin();
+        }
+    };
+    // let location = useLocation();
+    // useEffect(() => {
+    //     if (location.pathname === '/login') {
+    //         setIsShow(false);
+    //     }
+    // }, []);
+    useEffect(() => {
+        let session = sessionStorage.getItem('account');
+        if (session) {
+            history.push('/');
+            window.location.reload();
+        }
+    }, []);
     return (
         <div className="login-container">
             <div className="container">
@@ -22,11 +80,26 @@ const Login = (props) => {
                         <div className="brand d-sm-none">
                             <h1>Nguyen An</h1>
                         </div>
-                        <input type="text" placeholder="Emailaddress or phone number" className="form-control" />
-                        <input type="password" placeholder="Password" className="form-control" />
-                        <button className="btn btn-primary">Login</button>
+                        <input
+                            type="text"
+                            placeholder="Emailaddress or phone number"
+                            className={objValidInput.isValidValueLogin ? 'form-control' : 'form-control is-invalid'}
+                            value={valueLogin}
+                            onChange={(event) => setValueLogin(event.target.value)}
+                        />
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            className={objValidInput.isValidPassword ? 'form-control' : 'form-control is-invalid'}
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
+                            onKeyDown={(event) => handlePressEnter(event)}
+                        />
+                        <button className="btn btn-primary" onClick={() => handleLogin()}>
+                            Login
+                        </button>
                         <span className="text-center">
-                            <a className="forgot-pass" href="#">
+                            <a className="forgot-pass" href="https">
                                 Forgot your password?
                             </a>
                         </span>
