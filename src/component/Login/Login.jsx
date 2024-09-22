@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './Login.scss';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -8,12 +8,19 @@ const Login = (props) => {
     const [valueLogin, setValueLogin] = useState('');
     const [password, setPassword] = useState('');
 
+    const valueLoginRef = useRef(null);
+    const passwordRef = useRef(null);
+
     const defaultObjValidInput = {
         isValidValueLogin: true,
         isValidPassword: true,
     };
     const [objValidInput, setObjValidInput] = useState(defaultObjValidInput);
-
+    const handleKeyDown = (e, nextRef) => {
+        if (e.key === 'Enter') {
+            nextRef.current.focus();
+        }
+    };
     const handleCreateNewAccount = () => {
         history.push('/register');
     };
@@ -30,7 +37,7 @@ const Login = (props) => {
             return;
         }
         let response = await loginUser(valueLogin, password);
-        if (response && response.data && +response.data.EC === 0) {
+        if (response && +response.EC === 0) {
             //success
             let data = {
                 isAuthenticated: true,
@@ -40,9 +47,9 @@ const Login = (props) => {
             history.push('/users');
             window.location.reload();
         }
-        if (response && response.data && +response.data.EC !== 0) {
+        if (response && +response.EC !== 0) {
             //error
-            toast.error(response.data.EM);
+            toast.error(response.EM);
         }
     };
     const handlePressEnter = (event) => {
@@ -81,13 +88,16 @@ const Login = (props) => {
                             <h1>Nguyen An</h1>
                         </div>
                         <input
+                            ref={valueLoginRef}
                             type="text"
                             placeholder="Emailaddress or phone number"
                             className={objValidInput.isValidValueLogin ? 'form-control' : 'form-control is-invalid'}
                             value={valueLogin}
+                            onKeyDown={(e) => handleKeyDown(e, passwordRef)}
                             onChange={(event) => setValueLogin(event.target.value)}
                         />
                         <input
+                            ref={passwordRef}
                             type="password"
                             placeholder="Password"
                             className={objValidInput.isValidPassword ? 'form-control' : 'form-control is-invalid'}

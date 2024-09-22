@@ -3,7 +3,7 @@ import './App.scss';
 // import Register from './component/Register/Register';
 // import Users from './component/ManageUsers/Users';
 import Nav from './component/Navigation/Nav';
-import { BrowserRouter as Router} from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { useEffect, useState } from 'react';
 // import _ from 'lodash';
@@ -22,10 +22,10 @@ function App() {
                 <Nav />
             </div>
             <div className="app-container">
-                <AppRoutes/>
+                <AppRoutes />
             </div>
             <ToastContainer
-                position="top-left"
+                position="top-right"
                 autoClose={5000}
                 hideProgressBar={false}
                 newestOnTop={false}
