@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import imglogo from '../../assets/images/reactlogomain.png';
 
 const Register = (props) => {
     const [email, setEmail] = useState('');
@@ -98,22 +99,28 @@ const Register = (props) => {
             handleRegister();
         }
     };
+    useEffect(() => {
+        let session = sessionStorage.getItem('account');
+        if (!session) {
+            // window.location.reload();
+        }
+    }, []);
     return (
         <div className="register-container">
             <div className="container">
                 <div className="row px-3 px-sm-0">
-                    <div className="content-left d-none d-sm-block col-sm-7">
+                    <div className="content-left col-sm-7">
                         <div className="brand">
-                            <h1>Nguyen An</h1>
+                            <h3>Ứng Dụng Quản Lý Và Phân Quyền Người Dùng!</h3>
                         </div>
                         <div className="detail">
-                            Nguyen An helps you learn HTML, CSS, JavaScript, TailwindCSS, Bootstrap, SASS, ReactJS,
-                            NodeJS, ExpressJS, MySQL, XAMPP, Sequelize, Git, GitHub, etc.
+                            <img src={imglogo} alt="" />
+                            <h3>NGUYEN AN</h3>
                         </div>
                     </div>
                     <div className="content-right col-12 col-sm-5 d-flex flex-column gap-3 py-3">
                         <div className="brand d-sm-none">
-                            <h1>Nguyen An</h1>
+                            <h3>Ứng Dụng Quản Lý Và Phân Quyền Người Dùng!</h3>
                         </div>
                         <div className="form-group">
                             <label>Email</label>

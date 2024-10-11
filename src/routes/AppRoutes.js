@@ -7,7 +7,7 @@ const AppRoutes = (props) => {
     const Project = () => {
         return (
             <div>
-                project
+                Project
             </div>
         )
     }

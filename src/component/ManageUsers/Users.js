@@ -20,6 +20,7 @@ const Users = () => {
     }, []);
     const fetchUsers = async () => {
         let response = await fetchAllUser();
+        // console.log('response',response);
         if ( response && response.EC === 0) {
             setListUsers(response.DT);
         } else {
@@ -55,8 +56,8 @@ const Users = () => {
         setIsShowModalUser(true);
     };
     const handleRefesh = async () => {
-        let refesh = await fetchUsers();
-        if (refesh = true ) {
+        let success  = await fetchUsers();
+        if (success ) {
             toast.success("Refesh User Success !")
         }
     };
@@ -66,7 +67,7 @@ const Users = () => {
                 <div className="manage-user-container">
                     <div className="user-header">
                         <div className="title">
-                            <h3> Create table user</h3>
+                            <h3>Quản Lý Người Dùng</h3>
                         </div>
                         <div className="actions">
                             <button className="refesh btn btn-success" onClick={() => handleRefesh()}>
@@ -79,7 +80,7 @@ const Users = () => {
                                     setActionModalUser('CREATE');
                                 }}
                             >
-                                <IoPersonAdd /> Add new user
+                                <IoPersonAdd /> Thêm Người
                             </button>
                         </div>
                     </div>

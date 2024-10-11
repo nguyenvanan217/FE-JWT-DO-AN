@@ -3,6 +3,7 @@ import './Login.scss';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { loginUser } from '../../services/userService';
+import imglogo from '../../assets/images/reactlogomain.png';
 const Login = (props) => {
     let history = useHistory();
     const [valueLogin, setValueLogin] = useState('');
@@ -37,6 +38,7 @@ const Login = (props) => {
             return;
         }
         let response = await loginUser(valueLogin, password);
+        console.log('>>>response', response);
         if (response && +response.EC === 0) {
             //success
             let data = {
@@ -63,24 +65,23 @@ const Login = (props) => {
     //         setIsShow(false);
     //     }
     // }, []);
-    useEffect(() => {
-        let session = sessionStorage.getItem('account');
-        if (session) {
-            history.push('/');
-            window.location.reload();
-        }
-    }, []);
+    // useEffect(() => {
+    //     let session = sessionStorage.getItem('account');
+    //     if (session) {
+    //         history.push('/');
+    //         window.location.reload();
+    //     }
+    // }, []);
     return (
         <div className="login-container">
             <div className="container">
                 <div className="row px-3 px-sm-0">
                     <div className="content-left d-none d-sm-block col-sm-7">
                         <div className="brand">
-                            <h1>Nguyen An</h1>
+                        <h3>Ứng Dụng Quản Lý Và Phân Quyền Người Dùng!</h3>
                         </div>
                         <div className="detail">
-                            Nguyen An help you learning html, css, javascipt taildwincss, boostrap, sass, reactjs,
-                            nodejs, expressjs, mysql,xampp, sequelize ,git, github ...
+                            <img src={imglogo} alt="" />
                         </div>
                     </div>
                     <div className="content-right col-12 col-sm-5 d-flex flex-column gap-3 py-3">

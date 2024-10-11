@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import {Route} from 'react-router-dom'
 import { useHistory } from "react-router-dom";
 const PrivateRoutes = (props) => {
+    const {path,component} = props
     let history = useHistory()
     useEffect(()=> {
         let session = sessionStorage.getItem('account');
@@ -12,7 +13,7 @@ const PrivateRoutes = (props) => {
     })
     return (
         <>
-            <Route path={props.path} component={props.component}/>
+            <Route path={path} component={component}/>
         </>
     )
 }

@@ -8,6 +8,9 @@ const Nav = () => {
         if (location.pathname === '/login') {
             setIsShow(false);
         }
+        if(location.pathname === '/register'){
+            setIsShow(false);
+        }
     }, []);
     return (
         <>

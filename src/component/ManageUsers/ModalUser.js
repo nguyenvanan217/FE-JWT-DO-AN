@@ -36,19 +36,22 @@ const ModalUser = (props) => {
             setUserData({ ...dataModalUser, group: dataModalUser.Group ? dataModalUser.Group.id : '' });
         }
     }, [dataModalUser]);
+    // nếu [] thì hàm useEffect cái setUserData này chỉ chạy một lần khi component được mount, nếu dataModalUser không thay đổi sau lần đầu tiên component được mount, setUserData sẽ không được chạy và làm chức năng gán giá trị nữa => rỗng ở các ô input
+
+    //nếu không truyền gì thì useEffect sẽ được chạy lại mỗi khi state thay đổi, nên mình nhập thì nó sẽ làm state thay đổi nên nó lại chạy cái setUserData gán lại mấy giá trị cũ
+    // nếu [dataModalUser] thì setUserData sẽ chạy theo thay đôi khi dataModalUser thay đổi
     useEffect(() => {
-        if (action === 'CREATE') {
-            if (userData && userData.length > 0) {
-                setUserData({ ...userData, group: userGroups[0].id });
-            }
+        if (action === 'CREATE' && userGroups.length > 0) {
+            setUserData({ ...userData, group: userGroups[0].id }); // mặc định là customer
         }
-    }, [action]);
+    }, [action, userGroups]);
     const getGroups = async () => {
         let res = await fetchGroup();
-        if ( res && res.EC === 0) {
+        if (res && res.EC === 0) {
             setUserGroups(res.DT);
             if (res.DT && res.DT.length > 0) {
                 let groups = res.DT;
+                console.log('groups', groups);
                 setUserData({ ...userData, group: groups[0].id });
             }
         } else {
@@ -67,7 +70,8 @@ const ModalUser = (props) => {
         let arr = ['email', 'phone', 'password', 'group'];
         let check = true;
         for (let i = 0; i < arr.length; i++) {
-            if (!userData[arr[i]]) {
+            //!+biến : là kiểu falsy
+            if (!userData[arr[i]]) { //nếu chính xác là true thì sẽ thực hiện logic bên trong
                 let _validInputs = _.cloneDeep(validInputDefault);
                 _validInputs[[arr[i]]] = false;
                 setValidInput(_validInputs);
@@ -108,7 +112,9 @@ const ModalUser = (props) => {
             <Modal size="lg" show={props.show} className="modal-user" onHide={() => handleCloseModalUser()}>
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        <span>{props.action === 'CREATE' ? 'Create new user' : 'Edit a user'}</span>
+                        <span style={{ color: '#0B62E0' }}>
+                            {action === 'CREATE' ? 'Create new user:' : 'Edit a user:'}
+                        </span>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
