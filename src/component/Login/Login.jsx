@@ -47,7 +47,7 @@ const Login = (props) => {
             };
             sessionStorage.setItem('account', JSON.stringify(data));
             history.push('/users');
-            window.location.reload();
+            // window.location.reload();
         }
         if (response && +response.EC !== 0) {
             //error
@@ -78,7 +78,7 @@ const Login = (props) => {
                 <div className="row px-3 px-sm-0">
                     <div className="content-left d-none d-sm-block col-sm-7">
                         <div className="brand">
-                        <h3>Ứng Dụng Quản Lý Và Phân Quyền Người Dùng!</h3>
+                            <h3>Ứng Dụng Quản Lý Và Phân Quyền Người Dùng!</h3>
                         </div>
                         <div className="detail">
                             <img src={imglogo} alt="" />
@@ -91,7 +91,7 @@ const Login = (props) => {
                         <input
                             ref={valueLoginRef}
                             type="text"
-                            placeholder="Emailaddress or phone number"
+                            placeholder="Email address or phone number"
                             className={objValidInput.isValidValueLogin ? 'form-control' : 'form-control is-invalid'}
                             value={valueLogin}
                             onKeyDown={(e) => handleKeyDown(e, passwordRef)}

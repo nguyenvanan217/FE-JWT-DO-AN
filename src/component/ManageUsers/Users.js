@@ -21,7 +21,7 @@ const Users = () => {
     const fetchUsers = async () => {
         let response = await fetchAllUser();
         // console.log('response',response);
-        if ( response && response.EC === 0) {
+        if (response && response.EC === 0) {
             setListUsers(response.DT);
         } else {
             toast.error(response.EM);
@@ -56,9 +56,9 @@ const Users = () => {
         setIsShowModalUser(true);
     };
     const handleRefesh = async () => {
-        let success  = await fetchUsers();
-        if (success ) {
-            toast.success("Refesh User Success !")
+        let success = await fetchUsers();
+        if (success) {
+            toast.success('Refesh User Success !');
         }
     };
     return (
