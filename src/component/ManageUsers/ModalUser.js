@@ -51,7 +51,7 @@ const ModalUser = (props) => {
             setUserGroups(res.DT);
             if (res.DT && res.DT.length > 0) {
                 let groups = res.DT;
-                console.log('groups', groups);
+                // console.log('groups', groups);
                 setUserData({ ...userData, group: groups[0].id });
             }
         } else {

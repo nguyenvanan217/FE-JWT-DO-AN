@@ -38,7 +38,7 @@ const Login = (props) => {
             return;
         }
         let response = await loginUser(valueLogin, password);
-        console.log('>>>response', response);
+        // console.log('>>>response', response);
         if (response && +response.EC === 0) {
             //success
             let data = {
