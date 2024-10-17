@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-const UserContext = React.createContext({ name: '', auth: false });
+import React, { useEffect, useState } from 'react';
+import { getUserAccount } from '../services/userService';
+const UserContext = React.createContext(null);
 function UserProvider({ children }) {
     const [user, setUser] = useState({
         isAuthenticated: false,
         token: '',
         email: '',
-        account: {}
+        account: {},
     });
 
     // Login updates the user data with a name parameter
@@ -21,6 +22,12 @@ function UserProvider({ children }) {
         }));
     };
 
+    const fetchUser = async () => {
+        let data = await getUserAccount();
+    };
+    useEffect(() => {
+        fetchUser();
+    }, []);
     return <UserContext.Provider value={{ user, loginContext, logout }}>{children}</UserContext.Provider>;
 }
 

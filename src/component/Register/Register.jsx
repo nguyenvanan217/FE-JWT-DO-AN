@@ -98,12 +98,7 @@ const Register = (props) => {
             handleRegister();
         }
     };
-    useEffect(() => {
-        let session = sessionStorage.getItem('account');
-        if (!session) {
-            // window.location.reload();
-        }
-    }, []);
+ 
     return (
         <div className="register-container">
             <div className="container">
