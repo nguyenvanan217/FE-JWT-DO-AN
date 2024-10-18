@@ -2,7 +2,6 @@ import './App.scss';
 // import Login from './component/Login/Login';
 // import Register from './component/Register/Register';
 // import Users from './component/ManageUsers/Users';
-import Nav from './component/Navigation/Nav';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { useContext, useEffect, useState } from 'react';
@@ -10,6 +9,7 @@ import { UserContext } from './context/UserContext';
 import { Rings } from 'react-loader-spinner';
 // import _ from 'lodash';
 import AppRoutes from './routes/AppRoutes';
+import NavHeader from './component/Navigation/NavHeader';
 function App() {
     const { user } = useContext(UserContext);
     return (
@@ -23,7 +23,7 @@ function App() {
                 <>
                     {' '}
                     <div className="app-header">
-                        <Nav />
+                        <NavHeader />
                     </div>
                     <div className="app-container">
                         <AppRoutes />
