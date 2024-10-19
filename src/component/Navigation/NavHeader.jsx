@@ -7,9 +7,26 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Container } from 'react-bootstrap';
 import imglogo from '../../assets/images/logo192.png';
+import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { logoutUser } from '../../services/userService';
+import { toast } from 'react-toastify';
 const NavHeader = () => {
-    const { user } = useContext(UserContext);
+    const { user, logoutContext } = useContext(UserContext);
     const location = useLocation();
+    let history = useHistory();
+    const handleLogOutUser = async () => {
+        let data = await logoutUser(); //clear cookies
+        console.log('data1', data);
+        localStorage.removeItem('jwt'); //clear localStorage
+        logoutContext(); //clear user in context
+        //dấu + convert sang number cho dù dưới db có là string
+        if (data && +data.EC === 0) {
+            history.push('/login');
+            toast.success('Logout succeeds !');
+        } else {
+            toast.error(data.EM);
+        }
+    };
     if ((user && user.isAuthenticated === true) || location.pathname === '/') {
         return (
             <>
@@ -24,44 +41,52 @@ const NavHeader = () => {
                 <div className="nav-header">
                     <Navbar expand="lg" className="bg-body-tertiary bg-header">
                         <Container>
-                            <img
-                                src={imglogo}
-                                alt=""
-                                width="30"
-                                height="30"
-                                className="d-inline-block align-top"
-                            />
-                            <Navbar.Brand className='brand-name' href="#home">TAT CODER</Navbar.Brand>
+                            <img src={imglogo} alt="" width="30" height="30" className="d-inline-block align-top" />
+                            <Navbar.Brand className="brand-name" href="#home">
+                                TAT CODER
+                            </Navbar.Brand>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav className="me-auto">
                                     <NavLink to="/" exact className="nav-link">
                                         Home
                                     </NavLink>
-                                    <NavLink to="/users" className="nav-link">
-                                        User
-                                    </NavLink>
-                                    <NavLink to="/projects" className="nav-link">
-                                        Project
-                                    </NavLink>
-                                    <NavLink to="/about" className="nav-link">
-                                        About
-                                    </NavLink>
-                                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                                        <NavDropdown.Divider />
-                                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                                    </NavDropdown>
+                                    {user && user.isAuthenticated === true && (
+                                        <>
+                                            <NavLink to="/users" className="nav-link">
+                                                User
+                                            </NavLink>
+                                            <NavLink to="/projects" className="nav-link">
+                                                Project
+                                            </NavLink>
+                                            <NavLink to="/about" className="nav-link">
+                                                About
+                                            </NavLink>
+                                        </>
+                                    )}
                                 </Nav>
                                 <Nav>
-                                    <Nav.Item className="nav-link">Welcome TAT CODER</Nav.Item>
-                                    <NavDropdown title="Settings" id="basic-nav-dropdown">
-                                        <NavDropdown.Item href="#action/3.1">Change Password</NavDropdown.Item>
-                                        <NavDropdown.Divider />
-                                        <NavDropdown.Item href="#action/3.4">Log Out</NavDropdown.Item>
-                                    </NavDropdown>
+                                    {user && user.isAuthenticated === true ? (
+                                        <>
+                                            <Nav.Item className="nav-link">Welcome {user.account.username} !</Nav.Item>
+                                            <NavDropdown title="Settings" id="basic-nav-dropdown">
+                                                <NavDropdown.Item>Change Password</NavDropdown.Item>
+                                                <NavDropdown.Divider />
+                                                <NavDropdown.Item>
+                                                    <span onClick={() => handleLogOutUser()}>Log Out !</span>
+                                                </NavDropdown.Item>
+                                            </NavDropdown>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Link className="nav-link" to="/login">
+                                                Login
+                                            </Link>
+                                            <Link className="nav-link" to="/register">
+                                                Register
+                                            </Link>
+                                        </>
+                                    )}
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>

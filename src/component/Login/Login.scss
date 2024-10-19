@@ -1,9 +1,9 @@
 .red {
-    border : 1px solid red;
+    border: 1px solid red;
 }
 
 .yellow {
-    border : 1px solid yellow;
+    border: 1px solid yellow;
 }
 .login-container {
     background-color: #f0f2f5;
@@ -18,7 +18,7 @@
         }
         .detail {
             font-size: 20px;
-            text-transform:capitalize;
+            text-transform: capitalize;
         }
     }
     .content-right {
@@ -27,7 +27,7 @@
         height: 400px;
         width: 530px;
         margin-top: 30px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
         box-sizing: border-box;
         .brand {
             text-transform: uppercase;
