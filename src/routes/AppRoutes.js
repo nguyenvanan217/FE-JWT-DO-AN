@@ -3,6 +3,7 @@ import Login from '../component/Login/Login';
 import Register from '../component/Register/Register';
 import Users from '../component/ManageUsers/Users';
 import PrivateRoutes from './PrivateRoutes';
+import roles from '../component/Role/Role';
 const AppRoutes = (props) => {
     const Project = () => {
         return (
@@ -17,7 +18,7 @@ const AppRoutes = (props) => {
                 <Route path="/project">project</Route>
                 <PrivateRoutes path="/users" component={Users}/>
                 <PrivateRoutes path="/projects" component={Project}/>
-
+                <PrivateRoutes path="/roles" component={roles}/>
                 <Route path="/login">
                     <Login />
                 </Route>
