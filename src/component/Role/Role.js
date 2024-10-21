@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import _ from 'lodash';
 import { toast } from 'react-toastify';
+import createRoles from '../../services/rolesService';
+
 const Roles = () => {
     const dataChildDefault = {
         url: '',
@@ -14,11 +16,6 @@ const Roles = () => {
     const [listChilds, setListChilds] = useState({
         child1: dataChildDefault,
     });
-    useEffect(() => {
-        Object.entries(listChilds).map(([key, value]) => {
-            console.log('checkhihihi', key, value);
-        });
-    }, [listChilds]); // Thêm listChilds vào dependency array
 
     const handleOnchangeInput = (name, value, key) => {
         let _listChilds = _.cloneDeep(listChilds);
@@ -38,23 +35,37 @@ const Roles = () => {
         delete _listChilds[key];
         setListChilds(_listChilds);
     };
-    const handleSave = () => {
+    const buildDataToPersist = () => {
         let _listChilds = _.cloneDeep(listChilds);
-        let check = true;
-        Object.entries(_listChilds).forEach(([key, child]) => {
-            if (!child.url) {
-                child.isValidUrl = false;
-                check = false;
-            }
+        let result = [];
+        Object.entries(_listChilds).map(([key, child], index) => {
+            result.push({
+                url: child.url,
+                description: child.description,
+            });
         });
-        if (check) {
-            //call
+        return result;
+    };
+    const handleSave = async () => {
+        let _listChilds = _.cloneDeep(listChilds);
+
+        let invalidObj = Object.entries(_listChilds).find(([key, child], index) => {
+            return child && !child.url;
+        });
+        if (!invalidObj) {
+            let data = buildDataToPersist();
+            let res = await createRoles(data);
+            console.log('res',res);
+            if (res && +res.EC === 0) {
+                toast.success(res.EM);
+            }
         } else {
-            toast.error("Input URL Must Not Be Empty...")
+            toast.error('Input URL Must Not Be Empty...');
+            const key = invalidObj[0]; // Lấy key của input không hợp lệ
+            _listChilds[key].isValidUrl = false; // Đánh dấu là không hợp lệ
             setListChilds(_listChilds);
         }
     };
-
     return (
         <div className="role-container">
             <div className="container">
@@ -99,7 +110,7 @@ const Roles = () => {
                         })}
                         <div>
                             <button className="btn btn-warning mt-3" onClick={() => handleSave()}>
-                                save
+                                Save
                             </button>
                         </div>
                     </div>
