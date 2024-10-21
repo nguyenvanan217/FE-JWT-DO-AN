@@ -1,11 +1,12 @@
 import './Role.scss';
 import { IoMdAddCircle } from 'react-icons/io';
 import { FaTrashCan } from 'react-icons/fa6';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import _ from 'lodash';
 import { toast } from 'react-toastify';
-import createRoles from '../../services/rolesService';
+import { createRoles } from '../../services/rolesService';
+import TableRole from './TableRole';
 
 const Roles = () => {
     const dataChildDefault = {
@@ -13,6 +14,7 @@ const Roles = () => {
         description: '',
         isValidUrl: true,
     };
+    const childRef = useRef();
     const [listChilds, setListChilds] = useState({
         child1: dataChildDefault,
     });
@@ -55,9 +57,15 @@ const Roles = () => {
         if (!invalidObj) {
             let data = buildDataToPersist();
             let res = await createRoles(data);
-            console.log('res',res);
+            console.log('res', res);
             if (res && +res.EC === 0) {
                 toast.success(res.EM);
+                childRef.current.fetListRolesAgain();
+                // console.log('childRef', childRef);
+                // console.log(' childRef.current', childRef.current);
+            }
+            if (res && +res.EC === -1) {
+                toast.warning(res.EM);
             }
         } else {
             toast.error('Input URL Must Not Be Empty...');
@@ -69,7 +77,7 @@ const Roles = () => {
     return (
         <div className="role-container">
             <div className="container">
-                <div className="mt-3">
+                <div className="adding-roles mt-3">
                     <div className="title-role">
                         <h4>Add a new role ...</h4>
                     </div>
@@ -114,6 +122,11 @@ const Roles = () => {
                             </button>
                         </div>
                     </div>
+                </div>
+                <hr />
+                <div className="mt-3">
+                    <h4>List Current Roles: </h4>
+                    <TableRole ref={childRef} />
                 </div>
             </div>
         </div>

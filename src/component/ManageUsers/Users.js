@@ -67,7 +67,7 @@ const Users = () => {
                 <div className="manage-user-container">
                     <div className="user-header">
                         <div className="title">
-                            <h3>Quản Lý Người Dùng</h3>
+                            <h3 className='mt-3 mb-3'>Quản Lý Người Dùng</h3>
                         </div>
                         <div className="actions">
                             <button className="refesh btn btn-success" onClick={() => handleRefesh()}>
