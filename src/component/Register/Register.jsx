@@ -5,12 +5,12 @@ import { useEffect, useState, useRef, useContext } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import imglogo from '../../assets/images/reactlogomain.png';
-import { UserContext } from '../../context/UserContext';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+// import { UserContext } from '../../context/UserContext';
+import { Link } from 'react-router-dom';
 import { GiReturnArrow } from 'react-icons/gi';
 
 const Register = (props) => {
-    const { user, loginContext } = UserContext(UserContext);
+    // const { user, loginContext } = UserContext(UserContext);
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [username, setUsername] = useState('');
@@ -91,7 +91,7 @@ const Register = (props) => {
     };
 
     const handleNextEnter = (event, nextRef) => {
-        if (event.keyCode === 13 && event.code === 'Enter') {
+        if (event.key === 'Enter') {
             if (nextRef && nextRef.current) {
                 nextRef.current.focus();
             }

@@ -5,6 +5,7 @@ import Users from '../component/ManageUsers/Users';
 import PrivateRoutes from './PrivateRoutes';
 import roles from '../component/Role/Role';
 import GroupRole from '../component/GroupRole/GroupRole';
+import HomePage from '../component/HomePage/HomePage';
 const AppRoutes = (props) => {
     const Project = () => {
         return <div>Project</div>;
@@ -25,7 +26,7 @@ const AppRoutes = (props) => {
                 </Route>
 
                 <Route path="/" exact>
-                    home
+                    <HomePage />
                 </Route>
                 <Route path="*">404 NOT FOUND</Route>
             </Switch>

@@ -1,4 +1,7 @@
 .nav-header {
+    .nav-right{
+        margin-right: 25px;
+    }
     padding-bottom: 0.5rem;
     .nav-bar {
         padding-bottom: 0 !important;
@@ -22,10 +25,11 @@
        
         &.active {
             color: #61dafb !important;
-            border-bottom: 2px solid;
         }
     }
     .dropdown-menu {
+        position: absolute;
+        left: 0; /* Căn chỉnh dropdown với bên phải */
         a {
             color: #212529 !important;
         }

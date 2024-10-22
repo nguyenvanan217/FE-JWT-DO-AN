@@ -39,7 +39,7 @@ const NavHeader = () => {
                     <NavLink to="/about">About</NavLink>
                 </div> */}
                 <div className="nav-header">
-                    <Navbar expand="lg" className="bg-body-tertiary bg-header">
+                    <Navbar expand="lg" className="bg-body-tertiary bg-header container-navbar">
                         <Container>
                             <img src={imglogo} alt="" width="30" height="30" className="d-inline-block align-top" />
                             <Navbar.Brand className="brand-name" href="#home">
@@ -65,17 +65,14 @@ const NavHeader = () => {
                                             <NavLink to="/projects" className="nav-link">
                                                 Project
                                             </NavLink>
-                                            <NavLink to="/about" className="nav-link">
-                                                About
-                                            </NavLink>
                                         </>
                                     )}
                                 </Nav>
-                                <Nav>
+                                <Nav className='nav-right'>
                                     {user && user.isAuthenticated === true ? (
                                         <>
                                             <Nav.Item className="nav-link">Welcome {user.account.username} !</Nav.Item>
-                                            <NavDropdown title="Settings" id="basic-nav-dropdown">
+                                            <NavDropdown title="Settings" id="basic-nav-dropdown" drop="down">
                                                 <NavDropdown.Item>Change Password</NavDropdown.Item>
                                                 <NavDropdown.Divider />
                                                 <NavDropdown.Item>
