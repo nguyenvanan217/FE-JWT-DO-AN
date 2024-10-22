@@ -1,12 +1,16 @@
 import './Register.scss';
 import { registerNewUser } from '../../services/userService';
 import { useHistory } from 'react-router-dom';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useContext } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import imglogo from '../../assets/images/reactlogomain.png';
+import { UserContext } from '../../context/UserContext';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { GiReturnArrow } from 'react-icons/gi';
 
 const Register = (props) => {
+    const { user, loginContext } = UserContext(UserContext);
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [username, setUsername] = useState('');
@@ -98,7 +102,11 @@ const Register = (props) => {
             handleRegister();
         }
     };
- 
+    // useEffect(() => {
+    //     if (user && user.isAuthenticated) {
+    //         history.push('/');
+    //     }
+    // }, [user]);
     return (
         <div className="register-container">
             <div className="container">
@@ -185,6 +193,12 @@ const Register = (props) => {
                             <button className="btn btn-success" onClick={() => handleLogin()}>
                                 Already have an account? Login
                             </button>
+                            <div className="return mt-4">
+                                <Link to="/" className="no-underline">
+                                    <GiReturnArrow className="back-arrow" />
+                                    <h5 className="return-home">Return to HomePage</h5>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>

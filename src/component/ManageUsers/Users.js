@@ -80,7 +80,7 @@ const Users = () => {
                                     setActionModalUser('CREATE');
                                 }}
                             >
-                                <IoPersonAdd /> Thêm Người
+                                <IoPersonAdd /> Add
                             </button>
                         </div>
                     </div>

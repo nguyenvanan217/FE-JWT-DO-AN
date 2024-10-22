@@ -1,4 +1,8 @@
 .nav-header {
+    padding-bottom: 0.5rem;
+    .nav-bar {
+        padding-bottom: 0 !important;
+    }
     .bg-header {
         background-color: #20232a;
     }
@@ -15,8 +19,10 @@
         }
     }
     .nav-link {
+       
         &.active {
             color: #61dafb !important;
+            border-bottom: 2px solid;
         }
     }
     .dropdown-menu {

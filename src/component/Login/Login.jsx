@@ -5,8 +5,10 @@ import { toast } from 'react-toastify';
 import { loginUser } from '../../services/userService';
 import imglogo from '../../assets/images/reactlogomain.png';
 import { UserContext } from '../../context/UserContext';
+import { GiReturnArrow } from 'react-icons/gi';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 const Login = (props) => {
-    const { loginContext } = useContext(UserContext);
+    const { user, loginContext } = useContext(UserContext);
     let history = useHistory();
     const [valueLogin, setValueLogin] = useState('');
     const [password, setPassword] = useState('');
@@ -52,7 +54,7 @@ const Login = (props) => {
                 token,
                 account: { groupWithRoles, email, username },
             };
-            localStorage.setItem("jwt",(token))
+            localStorage.setItem('jwt', token);
             loginContext(data);
             history.push('/users');
             // window.location.reload();
@@ -67,6 +69,11 @@ const Login = (props) => {
             handleLogin();
         }
     };
+    // useEffect(() => {
+    //     if (user && user.isAuthenticated) {
+    //         history.push('/');
+    //     }
+    // }, user);
     return (
         <div className="login-container">
             <div className="container">
@@ -114,6 +121,12 @@ const Login = (props) => {
                             <button className="btn btn-success" onClick={() => handleCreateNewAccount()}>
                                 Create new account
                             </button>
+                            <div className="return mt-4">
+                                <Link to="/" className="no-underline">
+                                    <GiReturnArrow className="back-arrow" />
+                                    <h5 className="return-home">Return to HomePage</h5>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
