@@ -4,28 +4,26 @@ import Register from '../component/Register/Register';
 import Users from '../component/ManageUsers/Users';
 import PrivateRoutes from './PrivateRoutes';
 import roles from '../component/Role/Role';
+import GroupRole from '../component/GroupRole/GroupRole';
 const AppRoutes = (props) => {
     const Project = () => {
-        return (
-            <div>
-                Project
-            </div>
-        )
-    }
+        return <div>Project</div>;
+    };
     return (
         <>
             <Switch>
                 <Route path="/project">project</Route>
-                <PrivateRoutes path="/users" component={Users}/>
-                <PrivateRoutes path="/projects" component={Project}/>
-                <PrivateRoutes path="/roles" component={roles}/>
+                <PrivateRoutes path="/users" component={Users} />
+                <PrivateRoutes path="/projects" component={Project} />
+                <PrivateRoutes path="/roles" component={roles} />
+                <PrivateRoutes path="/group-role" component={GroupRole} />
                 <Route path="/login">
                     <Login />
                 </Route>
                 <Route path="/register">
                     <Register />
                 </Route>
-                
+
                 <Route path="/" exact>
                     home
                 </Route>
