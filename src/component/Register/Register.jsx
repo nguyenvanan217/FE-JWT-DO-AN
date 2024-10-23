@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useEffect, useState, useRef, useContext } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import imglogo from '../../assets/images/reactlogomain.png';
+import imglogo from '../../assets/images/reactred.png';
 // import { UserContext } from '../../context/UserContext';
 import { Link } from 'react-router-dom';
 import { GiReturnArrow } from 'react-icons/gi';

@@ -10,10 +10,12 @@ import { Rings } from 'react-loader-spinner';
 // import _ from 'lodash';
 import AppRoutes from './routes/AppRoutes';
 import NavHeader from './component/Navigation/NavHeader';
+import ToTop from './component/ToTop/ToTop';
 function App() {
     const { user } = useContext(UserContext);
     return (
         <Router>
+            {user &&  user.isAuthenticated === true ? <ToTop/> : <></>}
             {user && user.isLoading ? (
                 <div className="loading-container">
                     <Rings heigth="100" width="100" color="#1877f2" ariaLabel="loading" />
@@ -31,7 +33,7 @@ function App() {
                 </>
             )}
             <ToastContainer
-                position="top-right"
+                position="bottom-left"
                 autoClose={5000}
                 hideProgressBar={false}
                 newestOnTop={false}

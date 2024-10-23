@@ -6,7 +6,7 @@ const instance = axios.create({
 });
 instance.defaults.withCredentials = true;
 // // Alter defaults after instance has been created
-instance.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("jwt")}`;
+instance.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('jwt')}`;
 // Add a request interceptor
 instance.interceptors.request.use(
     function (config) {
@@ -31,15 +31,19 @@ instance.interceptors.response.use(
         // Do something with response error
         const status = (error && error.response && error.response.status) || 500;
         switch (status) {
-            // authentication (token related issues)
+            // xác thực (token related issues)
             case 401: {
-                if (window.location.pathname !== '/' && window.location.pathname !== '/login' && window.location.pathname !== '/register' ) {
-                    toast.error('Unauthorized the user. Please login...');
+                if (
+                    window.location.pathname !== '/' &&
+                    window.location.pathname !== '/login' &&
+                    window.location.pathname !== '/register'
+                ) {
+                    toast.error('Unauthorized users. Please log in ...');
                 }
                 return error.response.data;
             }
 
-            // forbidden (permission related issues)
+            // bị cấm (vấn đề liên quan đến quyền)
             case 403: {
                 toast.error(`You don't have permisssion access this resource...`);
                 return Promise.reject(error);
@@ -50,22 +54,22 @@ instance.interceptors.response.use(
                 return Promise.reject(error);
             }
 
-            // not found
+            // k tìm thấy
             case 404: {
                 return Promise.reject(error);
             }
 
-            // conflict
+            // xung đột
             case 409: {
                 return Promise.reject(error);
             }
 
-            // unprocessable
+            // không thể xử lý được
             case 422: {
                 return Promise.reject(error);
             }
 
-            // generic api error (server related) unexpected
+            // lỗi api chung (liên quan đến máy chủ) không mong muốn
             default: {
                 return Promise.reject(error);
             }

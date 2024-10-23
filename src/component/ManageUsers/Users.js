@@ -7,7 +7,7 @@ import './Users.scss';
 import { HiRefresh } from 'react-icons/hi';
 import { IoPersonAdd } from 'react-icons/io5';
 const Users = () => {
-    const [listUsers, setListUsers] = useState([]);
+    const [listUsers, setListUsers] = useState([]);  
     //modal delete
     const [isShowModalDelete, setIsShowModalDelete] = useState(false);
     const [dataModal, setDataModal] = useState({});

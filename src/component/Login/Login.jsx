@@ -3,7 +3,7 @@ import './Login.scss';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { loginUser } from '../../services/userService';
-import imglogo from '../../assets/images/reactlogomain.png';
+import imglogo from '../../assets/images/reactred.png';
 import { UserContext } from '../../context/UserContext';
 import { GiReturnArrow } from 'react-icons/gi';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
