@@ -35,11 +35,11 @@ const Register = (props) => {
         history.push('/login');
     };
 
-    useEffect(() => {
-        // axios.get('http://localhost:6969/api/v1/test-api').then((data) => {
-        //     console.log('>>>>>>>>>>>>>>>>>>>Check Data', data);
-        // });
-    }, []);
+    // useEffect(() => {
+    //     // axios.get('http://localhost:6969/api/v1/test-api').then((data) => {
+    //     //     console.log('>>>>>>>>>>>>>>>>>>>Check Data', data);
+    //     // });
+    // }, []);
 
     const isValidInputs = () => {
         setObjCheckInput(defaultValidInput);

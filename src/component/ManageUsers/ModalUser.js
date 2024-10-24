@@ -42,7 +42,7 @@ const ModalUser = (props) => {
     // nếu [dataModalUser] thì setUserData sẽ chạy theo thay đôi khi dataModalUser thay đổi
     useEffect(() => {
         if (action === 'CREATE' && userGroups.length > 0) {
-            setUserData({ ...userData, group: userGroups[0].id }); // mặc định là customer
+            setUserData({ ...userData, group: userGroups[0].id }); 
         }
     }, [action, userGroups]);
     const getGroups = async () => {
