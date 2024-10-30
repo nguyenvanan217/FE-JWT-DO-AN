@@ -67,7 +67,7 @@ const Users = () => {
                 <div className="manage-user-container">
                     <div className="user-header">
                         <div className="title">
-                            <h3 className='mt-3 mb-3'>Quản Lý Người Dùng</h3>
+                            <h3 className="mt-3 mb-3">Quản Lý Người Dùng</h3>
                         </div>
                         <div className="actions">
                             <button className="refesh btn btn-success" onClick={() => handleRefesh()}>
@@ -84,9 +84,9 @@ const Users = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="user-body">
+                    <div className="user-body table-responsive">
                         <table className="table table-bordered table-hover">
-                            <thead>
+                            <thead className="table-dark">
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Id</th>

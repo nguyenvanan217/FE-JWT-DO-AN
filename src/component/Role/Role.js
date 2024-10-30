@@ -1,7 +1,7 @@
 import './Role.scss';
 import { IoMdAddCircle } from 'react-icons/io';
 import { FaTrashCan } from 'react-icons/fa6';
-import { useEffect, useRef, useState } from 'react';
+import {  useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import _ from 'lodash';
 import { toast } from 'react-toastify';

@@ -28,4 +28,7 @@ td {
     text-overflow: ellipsis; /* Hiển thị dấu '...' khi văn bản vượt quá */
     max-width: 200px; /* Đặt chiều rộng tối đa cho ô văn bản */
 }
-
+.manage-user-container {
+    overflow: hidden;
+//    scro
+}

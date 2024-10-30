@@ -111,13 +111,13 @@ const Register = (props) => {
         <div className="register-container">
             <div className="container">
                 <div className="row px-3 px-sm-0">
-                    <div className="content-left col-sm-7">
+                    <div className="content-left d-none col-sm-7 d-sm-block">
                         <div className="brand">
                             <h3>Ứng Dụng Quản Lý Và Phân Quyền Người Dùng!</h3>
                         </div>
                         <div className="detail">
                             <img src={imglogo} alt="" />
-                            <h3>NGUYEN AN</h3>
+                            <h3>Quang Huy</h3>
                         </div>
                     </div>
                     <div className="content-right col-12 col-sm-5 d-flex flex-column gap-3 py-3">

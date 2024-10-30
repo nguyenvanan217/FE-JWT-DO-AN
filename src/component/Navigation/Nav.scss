@@ -34,6 +34,7 @@
             color: #212529 !important;
         }
     }
+
 }
 @keyframes spin {
     from {
@@ -56,4 +57,10 @@
         animation: spin infinite 4s linear; 
         margin-right: 10px;
     }
+}
+
+.log-out {
+    display: block;
+    color: red;
+    font-weight: bold;
 }

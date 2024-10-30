@@ -43,7 +43,7 @@ const NavHeader = () => {
                         <Container>
                             <img src={imglogo} alt="" width="30" height="30" className="d-inline-block align-top" />
                             <Navbar.Brand className="brand-name" href="#home">
-                                TAT CODER
+                                Quang Huy
                             </Navbar.Brand>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
@@ -68,7 +68,7 @@ const NavHeader = () => {
                                         </>
                                     )}
                                 </Nav>
-                                <Nav className='nav-right'>
+                                <Nav className="nav-right">
                                     {user && user.isAuthenticated === true ? (
                                         <>
                                             <Nav.Item className="nav-link">Welcome {user.account.username} !</Nav.Item>
@@ -76,7 +76,9 @@ const NavHeader = () => {
                                                 <NavDropdown.Item>Change Password</NavDropdown.Item>
                                                 <NavDropdown.Divider />
                                                 <NavDropdown.Item>
-                                                    <span onClick={() => handleLogOutUser()}>Log Out !</span>
+                                                    <span className="log-out" onClick={() => handleLogOutUser()}>
+                                                        Log Out !
+                                                    </span>
                                                 </NavDropdown.Item>
                                             </NavDropdown>
                                         </>
