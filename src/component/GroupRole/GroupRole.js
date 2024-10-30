@@ -102,7 +102,7 @@ const GroupRole = () => {
                                 Select Group: (<span className="red">*</span>)
                             </label>
                             <select
-                                className={'form-select'}
+                                className={'form-select form-select-sm'}
                                 onChange={(event) => handleOnchangeGroup(event.target.value)}
                             >
                                 <option value="">Please select Your Group</option>
