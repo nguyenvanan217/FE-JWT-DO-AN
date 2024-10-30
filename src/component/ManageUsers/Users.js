@@ -103,13 +103,13 @@ const Users = () => {
                                         {listUsers.map((item, index) => {
                                             return (
                                                 <tr key={`row-${index}`}>
-                                                    <td>{index + 1}</td>
-                                                    <td>{item.id}</td>
-                                                    <td>{item.email}</td>
-                                                    <td>{item.username}</td>
-                                                    <td>{item.Group ? item.Group.name : ''}</td>
-                                                    <td>{item.address}</td>
-                                                    <td>
+                                                    <td className='text-center align-content-center'>{index + 1}</td>
+                                                    <td className='text-center align-content-center'>{item.id}</td>
+                                                    <td className='text-center align-content-center'>{item.email}</td>
+                                                    <td className='text-center align-content-center'>{item.username}</td>
+                                                    <td className='text-center align-content-center'>{item.Group ? item.Group.name : ''}</td>
+                                                    <td className='text-center align-content-center'>{item.address}</td>
+                                                    <td className='text-center align-content-center'>
                                                         <button
                                                             className="edit btn btn-edit btn btn-warning mx-3"
                                                             onClick={() => handleEditUser(item)}

@@ -77,8 +77,8 @@ const Login = (props) => {
     return (
         <div className="login-container">
             <div className="container">
-                <div className="row px-3 px-sm-0">
-                    <div className="content-left d-none d-sm-block">
+                <div className="row d-flex justify-content-center px-3">
+                    <div className="content-left col-7 d-none d-xxl-block">
                         <div className="brand">
                             <h3>Ứng Dụng Quản Lý Và Phân Quyền Người Dùng!</h3>
                         </div>
@@ -86,8 +86,8 @@ const Login = (props) => {
                             <img src={imglogo} alt="" />
                         </div>
                     </div>
-                    <div className="content-right col-12 d-flex flex-column gap-3 py-3">
-                        <div className="brand d-sm-none">
+                    <div className="content-right col-5 col-xl-12 d-flex flex-column gap-3 py-3">
+                        <div className="brand d-xxl-none">
                             <h1>Quang Huy</h1>
                         </div>
                         <input
