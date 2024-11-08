@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useContext } from 'react';
+import { useState, useRef, useContext } from 'react';
 import './Login.scss';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';

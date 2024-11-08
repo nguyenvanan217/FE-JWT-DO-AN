@@ -35,7 +35,6 @@ const NavHeader = () => {
                         Home
                     </NavLink>
                     <NavLink to="/users">User</NavLink>
-                    <NavLink to="/projects">Project</NavLink>
                     <NavLink to="/about">About</NavLink>
                 </div> */}
                 <div className="nav-header">
@@ -61,9 +60,6 @@ const NavHeader = () => {
                                             </NavLink>
                                             <NavLink to="/group-role" className="nav-link">
                                                 Group-Roles
-                                            </NavLink>
-                                            <NavLink to="/projects" className="nav-link">
-                                                Project
                                             </NavLink>
                                         </>
                                     )}

@@ -4,7 +4,7 @@ import './App.scss';
 // import Users from './component/ManageUsers/Users';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import { useContext, useEffect, useState } from 'react';
+import { useContext} from 'react';
 import { UserContext } from './context/UserContext';
 import { Rings } from 'react-loader-spinner';
 // import _ from 'lodash';
