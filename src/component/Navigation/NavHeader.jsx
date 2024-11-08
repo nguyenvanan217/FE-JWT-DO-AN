@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import './Nav.scss';
 import { NavLink, Redirect, useLocation } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
@@ -69,8 +69,6 @@ const NavHeader = () => {
                                         <>
                                             <Nav.Item className="nav-link">Welcome {user.account.username} !</Nav.Item>
                                             <NavDropdown title="Settings" id="basic-nav-dropdown" drop="down">
-                                                <NavDropdown.Item>Change Password</NavDropdown.Item>
-                                                <NavDropdown.Divider />
                                                 <NavDropdown.Item>
                                                     <span className="log-out" onClick={() => handleLogOutUser()}>
                                                         Log Out !
