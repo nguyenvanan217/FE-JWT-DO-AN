@@ -117,7 +117,7 @@ const Register = (props) => {
                         </div>
                         <div className="detail">
                             <img src={imglogo} alt="" />
-                            <h3>Quang Huy</h3>
+                            <h3>Hoang Hanh</h3>
                         </div>
                     </div>
                     <div className="content-right col-12 col-xl-5 d-flex flex-column gap-3 py-3">

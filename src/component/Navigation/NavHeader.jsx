@@ -42,7 +42,7 @@ const NavHeader = () => {
                         <Container>
                             <img src={imglogo} alt="" width="30" height="30" className="d-inline-block align-top" />
                             <Navbar.Brand className="brand-name" href="#home">
-                                An Nguyen
+                                Hoang Hanh
                             </Navbar.Brand>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">

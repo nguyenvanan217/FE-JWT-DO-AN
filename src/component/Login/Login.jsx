@@ -88,7 +88,7 @@ const Login = (props) => {
                     </div>
                     <div className="content-right col-5 col-xl-12 d-flex flex-column gap-3 py-3">
                         <div className="brand d-xxl-none">
-                            <h1>Quang Huy</h1>
+                            <h1>Hoang Hanh</h1>
                         </div>
                         <input
                             ref={valueLoginRef}
